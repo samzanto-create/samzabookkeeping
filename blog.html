@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blog — Bookkeeping Tips for Small Business Owners | Samza Bookkeeping</title>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -61,17 +64,11 @@
     max-width:1100px; margin:0 auto;
   }
   .logo{
-    display:flex; align-items:baseline; gap:8px;
+    display:flex; align-items:center;
     text-decoration:none; color:var(--paper);
   }
-  .logo .mark{
-    font-family:'Fraunces', serif; font-weight:600; font-size:22px; letter-spacing:0.01em;
-    color:var(--paper);
-  }
-  .logo .sub{
-    font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.12em;
-    text-transform:uppercase; color:var(--brass);
-  }
+  .logo-img{ height:34px; width:auto; display:block; }
+  .logo-img.footer-mark{ height:30px; }
   nav.links{ display:flex; align-items:center; gap:36px; }
   nav.links a{
     color:#CFC6A6; text-decoration:none; font-size:14.5px; font-weight:500;
@@ -377,10 +374,7 @@
 
 <header>
   <div class="nav">
-    <a class="logo" href="index.html">
-      <span class="mark">Samza</span>
-      <span class="sub">Bookkeeping</span>
-    </a>
+    <a class="logo" href="index.html"><img class="logo-img" src="assets/logo-header.png" alt="Samza Bookkeeping"></a>
     <nav class="links">
       <a href="index.html#services">Services</a>
       <a href="pricing.html">Pricing</a>
@@ -457,7 +451,7 @@
 <footer>
   <div class="wrap foot-grid">
     <div>
-      <div class="logo"><span class="mark">Samza</span><span class="sub">Bookkeeping</span></div>
+      <div class="logo"><img class="logo-img footer-mark" src="assets/logo-footer.png" alt="Samza Bookkeeping"></div>
       <div class="copyright">© 2026 Samza Bookkeeping. Minneapolis–Saint Paul, MN.</div>
     </div>
     <div class="foot-links">
