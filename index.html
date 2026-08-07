@@ -4,9 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Samza Bookkeeping — Time to get your time back</title>
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48x48.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#1B3129">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -229,6 +233,16 @@
   .services-head{ max-width:60ch; margin-bottom:48px; }
   .services-head h2{ font-size:32px; margin-bottom:16px; }
   .services-head p{ color:var(--ink-soft); font-size:15.5px; }
+  .service-chips{ display:flex; flex-wrap:wrap; gap:12px; }
+  .service-chip{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:0.04em;
+    color:var(--paper); text-decoration:none;
+    background:var(--green); padding:10px 18px;
+    border:1px solid var(--green-dark);
+    transition:background .15s ease;
+  }
+  .service-chip:hover{ background:var(--green-dark); }
   .ledger-cols{ display:grid; grid-template-columns:1fr 1fr; gap:0 64px; }
   .ledger-group{ margin-bottom:36px; }
   .ledger-group h3{
@@ -376,11 +390,11 @@
   <div class="nav">
     <a class="logo" href="#"><img class="logo-img" src="assets/logo-header.png" alt="Samza Bookkeeping"></a>
     <nav class="links">
-      <a href="#services">Services</a>
+      <a href="services.html">Services</a>
       <a href="pricing.html">Pricing</a>
       <a href="blog.html">Blog</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
     </nav>
     <a class="stamp-btn" href="#contact">Book a call</a>
   </div>
@@ -395,7 +409,7 @@
     <p class="lede">Simplified, professional bookkeeping for small businesses — from clean monthly books to catch-up cleanup, handled by one person who actually knows your numbers.</p>
     <div class="hero-ctas">
       <a class="stamp-btn" href="#contact">Book a call</a>
-      <a class="text-link" href="#services">See what's included →</a>
+      <a class="text-link" href="services.html">See what's included →</a>
     </div>
   </div>
   <div class="hero-visual">
@@ -469,8 +483,8 @@
     <div>
       <span class="section-tag">About Sam</span>
       <h2>A full-service bookkeeper who actually picks up the phone.</h2>
-      <p>Based in the Twin Cities, Samza Bookkeeping has been serving clients across the country since 2019 — from solo operators to growing teams, across just about every kind of business. There's no niche requirement and no cookie-cutter package; the scope of work is built around how your business actually runs.</p>
       <p>No account managers, no hand-offs to junior staff — every client works directly with Sam, month after month.</p>
+      <a class="stamp-btn" href="about.html" style="margin-top:8px; display:inline-block;">Read my story →</a>
     </div>
   </div>
 </section>
@@ -482,45 +496,14 @@
       <h2>Everything your books need, in one place.</h2>
       <p>A full-service bookkeeping firm covering every base of financial record-keeping and management — from day-to-day categorization to year-end tax readiness.</p>
     </div>
-    <div class="ledger-cols">
-      <div>
-        <div class="ledger-group">
-          <h3>Full-service bookkeeping</h3>
-          <div class="ledger-row"><span class="check">✓</span><span class="label">Transaction categorization</span></div>
-          <div class="ledger-row"><span class="check">✓</span><span class="label">Bank & credit card reconciliations</span></div>
-          <div class="ledger-row"><span class="check">✓</span><span class="label">Accounts payable & receivable</span></div>
-          <div class="ledger-row"><span class="check">✓</span><span class="label">Inventory management</span></div>
-          <div class="ledger-row"><span class="check">✓</span><span class="label">Chart of accounts maintenance</span></div>
-          <div class="ledger-row"><span class="check">✓</span><span class="label">Loan & liability tracking</span></div>
-          <div class="ledger-row"><span class="check">✓</span><span class="label">Job costing for project-based work</span></div>
-        </div>
-        <div class="ledger-group">
-          <h3>Catch-up & cleanup</h3>
-          <div class="ledger-row"><span class="check">✓</span><span class="label">Historical bookkeeping & reconciliation</span></div>
-          <div class="ledger-row"><span class="check">✓</span><span class="label">QuickBooks cleanup</span></div>
-        </div>
-      </div>
-      <div>
-        <div class="ledger-group">
-          <h3>Financial reporting</h3>
-          <div class="ledger-row"><span class="check">✓</span><span class="label">Monthly P&L, balance sheet, cash flow</span></div>
-          <div class="ledger-row"><span class="check">✓</span><span class="label">Custom reporting by job or location</span></div>
-          <div class="ledger-row"><span class="check">✓</span><span class="label">Budgeting & forecasting support</span></div>
-        </div>
-        <div class="ledger-group">
-          <h3>Tax-ready support</h3>
-          <div class="ledger-row"><span class="check">✓</span><span class="label">Sales tax tracking</span></div>
-          <div class="ledger-row"><span class="check">✓</span><span class="label">1099 preparation</span></div>
-          <div class="ledger-row"><span class="check">✓</span><span class="label">Direct CPA collaboration</span></div>
-        </div>
-        <div class="ledger-group">
-          <h3>Software setup</h3>
-          <div class="ledger-row"><span class="check">✓</span><span class="label">QuickBooks Online setup</span></div>
-          <div class="ledger-row"><span class="check">✓</span><span class="label">POS, payroll & app integrations</span></div>
-          <div class="ledger-row"><span class="check">✓</span><span class="label">1:1 training & support</span></div>
-        </div>
-      </div>
+    <div class="service-chips">
+      <a href="services.html#full-service-bookkeeping" class="service-chip">Full-service bookkeeping</a>
+      <a href="services.html#financial-reporting" class="service-chip">Financial reporting</a>
+      <a href="services.html#catch-up-cleanup" class="service-chip">Catch-up & cleanup</a>
+      <a href="services.html#tax-ready-support" class="service-chip">Tax-ready support</a>
+      <a href="services.html#software-setup" class="service-chip">Software setup</a>
     </div>
+    <a class="stamp-btn" href="services.html" style="margin-top:32px; display:inline-block;">View all services →</a>
   </div>
 </section>
 
@@ -550,11 +533,11 @@
       <div class="copyright">© 2026 Samza Bookkeeping. Minneapolis–Saint Paul, MN.</div>
     </div>
     <div class="foot-links">
-      <a href="#services">Services</a>
+      <a href="services.html">Services</a>
       <a href="pricing.html">Pricing</a>
       <a href="blog.html">Blog</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
     </div>
     <div class="foot-social">
       <a href="https://x.com/samzabooks" target="_blank" rel="noopener">X</a>
