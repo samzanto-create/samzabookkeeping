@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Bookkeeping Tips for Small Business Owners | Samza Bookkeeping</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2EFE3;
+    --paper-2:#EAE5D3;
+    --ink:#232520;
+    --ink-soft:#5B5B50;
+    --green:#2C4E43;
+    --green-dark:#1B3129;
+    --brass:#B8863E;
+    --brass-light:#EFE0C2;
+    --brick:#A8462E;
+    --line: rgba(35,37,32,0.16);
+    --radius: 2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    margin:0;
+    color:var(--green-dark);
+  }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  .wrap{ max-width:1100px; margin:0 auto; padding:0 32px; }
+
+  /* ledger tick divider */
+  .ledger-rule{
+    width:100%;
+    height:18px;
+    background-image: repeating-linear-gradient(to right, var(--line) 0, var(--line) 1px, transparent 1px, transparent 48px);
+    border-top:1px solid var(--line);
+    margin: 0;
+  }
+
+  /* header */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--green-dark);
+    border-bottom:2px solid var(--brass);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 32px;
+    max-width:1100px; margin:0 auto;
+  }
+  .logo{
+    display:flex; align-items:baseline; gap:8px;
+    text-decoration:none; color:var(--paper);
+  }
+  .logo .mark{
+    font-family:'Fraunces', serif; font-weight:600; font-size:22px; letter-spacing:0.01em;
+    color:var(--paper);
+  }
+  .logo .sub{
+    font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--brass);
+  }
+  nav.links{ display:flex; align-items:center; gap:36px; }
+  nav.links a{
+    color:#CFC6A6; text-decoration:none; font-size:14.5px; font-weight:500;
+    position:relative; padding-bottom:3px;
+  }
+  nav.links a:hover{ color:var(--paper); }
+  .stamp-btn{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; font-weight:500; letter-spacing:0.04em; text-transform:uppercase;
+    color:var(--paper);
+    background:var(--brick);
+    border:1.5px solid var(--brick);
+    padding:10px 20px;
+    border-radius:var(--radius);
+    text-decoration:none;
+    transition:background .15s ease, border-color .15s ease, transform .1s ease;
+  }
+  .stamp-btn:hover{
+    background:#8A3823;
+    border-color:#8A3823;
+    transform:translateY(-1px);
+  }
+
+  /* hero */
+  .hero{
+    position:relative;
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px;
+    align-items:center;
+    padding:72px 32px 56px;
+    max-width:1100px; margin:0 auto;
+    overflow:visible;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:-20px -32px auto -32px; height:520px;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:34px 34px;
+    -webkit-mask-image: radial-gradient(ellipse 900px 420px at 30% 20%, black 40%, transparent 78%);
+    mask-image: radial-gradient(ellipse 900px 420px at 30% 20%, black 40%, transparent 78%);
+    opacity:0.55;
+    pointer-events:none;
+    z-index:0;
+  }
+  .hero > *{ position:relative; z-index:1; }
+  .hero-visual{ position:relative; }
+  .dash-card{
+    position:absolute;
+    top:-34px; right:34px;
+    width:180px;
+    background:var(--green-dark);
+    border:1px solid var(--brass);
+    padding:14px 16px 16px;
+    transform:rotate(3deg);
+    z-index:0;
+    box-shadow:0 10px 24px rgba(27,49,41,0.22);
+  }
+  .dash-card .dash-title{
+    font-family:'IBM Plex Mono', monospace; font-size:9.5px; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--brass); margin-bottom:10px;
+  }
+  .dash-card svg{ display:block; width:100%; height:auto; }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--brass); margin-bottom:18px; display:block;
+  }
+  .hero h1{ font-size:46px; line-height:1.12; margin-bottom:20px; }
+  .hero p.lede{ font-size:18px; color:var(--ink-soft); max-width:46ch; margin-bottom:32px; }
+  .hero-ctas{ display:flex; align-items:center; gap:22px; }
+  .text-link{ color:var(--green-dark); text-decoration:underline; text-underline-offset:3px; font-weight:500; font-size:14.5px; }
+  .hero-ledger{
+    position:relative;
+    border:1px solid var(--line);
+    background:var(--paper-2);
+    padding:28px 24px;
+  }
+  .hero-ledger .row{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:11px 0; border-bottom:1px solid var(--line);
+    font-family:'IBM Plex Mono', monospace; font-size:13px;
+  }
+  .hero-ledger .row:last-child{ border-bottom:none; }
+  .hero-ledger .row .label{ color:var(--ink-soft); }
+  .hero-ledger .row .val{ color:var(--green-dark); font-weight:500; }
+  .hero-ledger .row .val.check{ color:var(--brass); }
+  .hero-ledger .total{
+    display:flex; justify-content:space-between; align-items:baseline;
+    margin-top:16px; padding-top:16px; border-top:1.5px solid var(--green);
+  }
+  .hero-ledger .total .label{ font-family:'Fraunces', serif; font-size:15px; color:var(--green-dark); }
+  .hero-ledger .total .val{ font-family:'IBM Plex Mono', monospace; font-size:22px; color:var(--brick); font-weight:500; }
+  .hero-ledger .caption{
+    position:absolute; bottom:-14px; right:6px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-soft);
+    padding:5px 10px; transform:rotate(1.5deg);
+  }
+
+  /* trust strip */
+  .trust-strip{
+    background:var(--green-dark);
+    padding:0;
+  }
+  .trust-strip .wrap{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+    padding:0;
+  }
+  .trust-tile{
+    display:flex; align-items:center; gap:12px;
+    padding:24px 22px;
+    border-right:1px solid rgba(242,239,227,0.14);
+  }
+  .trust-tile:last-child{ border-right:none; }
+  .trust-tile svg{ flex-shrink:0; width:26px; height:26px; }
+  .trust-tile .t-label{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; line-height:1.4;
+    color:#D8CFAE; letter-spacing:0.01em;
+  }
+  .trust-tile .t-label strong{ display:block; color:var(--paper); font-size:13.5px; font-weight:500; margin-bottom:2px; }
+
+  /* integrations strip */
+  .integrations{ padding:52px 32px; border-bottom:1px solid var(--line); }
+  .integrations .wrap{ display:flex; align-items:center; gap:36px; flex-wrap:wrap; justify-content:space-between; }
+  .integrations .int-label{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--ink-soft); white-space:nowrap;
+  }
+  .int-tiles{ display:flex; gap:14px; flex-wrap:wrap; }
+  .int-tile{
+    display:flex; align-items:center; gap:8px;
+    border:1px solid var(--line); padding:8px 14px;
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--ink);
+    background:var(--paper-2);
+  }
+  .int-tile .dot{ width:9px; height:9px; border-radius:50%; flex-shrink:0; }
+
+  /* about */
+  .about{ padding:88px 32px; }
+  .about .grid{
+    display:grid; grid-template-columns:0.75fr 1.25fr; gap:64px; align-items:start;
+  }
+  .stat-block{ display:flex; flex-direction:column; gap:24px; margin-top:8px; }
+  .stat{ border-top:1px solid var(--line); padding-top:14px; }
+  .stat-num{ display:block; font-family:'IBM Plex Mono', monospace; font-size:32px; color:var(--green-dark); font-weight:500; }
+  .stat-label{ display:block; font-size:13px; color:var(--ink-soft); margin-top:4px; }
+  .section-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--brass); margin-bottom:14px; display:block;
+  }
+  .about h2{ font-size:32px; margin-bottom:22px; }
+  .about p{ color:var(--ink-soft); font-size:15.5px; margin-bottom:18px; max-width:56ch; }
+
+  /* services ledger */
+  .services{ padding:88px 32px; background:var(--paper-2); }
+  .services-head{ max-width:60ch; margin-bottom:48px; }
+  .services-head h2{ font-size:32px; margin-bottom:16px; }
+  .services-head p{ color:var(--ink-soft); font-size:15.5px; }
+  .ledger-cols{ display:grid; grid-template-columns:1fr 1fr; gap:0 64px; }
+  .ledger-group{ margin-bottom:36px; }
+  .ledger-group h3{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--paper); font-weight:500;
+    background:var(--green); padding:5px 12px; margin-bottom:12px;
+  }
+  .ledger-row{
+    display:flex; align-items:flex-start; gap:12px;
+    padding:13px 0; border-bottom:1px solid var(--line);
+    font-size:14.5px;
+  }
+  .ledger-row .check{
+    font-family:'IBM Plex Mono', monospace; color:var(--brass); font-weight:500; flex-shrink:0;
+  }
+  .ledger-row .label{ color:var(--ink); }
+
+  /* pricing */
+  .pricing{ padding:88px 32px; }
+  .pricing-head{ text-align:center; max-width:56ch; margin:0 auto 48px; }
+  .pricing-head h2{ font-size:32px; margin-bottom:16px; }
+  .pricing-head p{ color:var(--ink-soft); font-size:15.5px; }
+  .tiers{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .tier{
+    border:1px solid var(--line); background:var(--paper-2);
+    padding:32px 26px; display:flex; flex-direction:column;
+  }
+  .tier.featured{ border:1.5px solid var(--green); background:var(--green); }
+  .tier.featured .tier-name{ color:var(--brass-light); }
+  .tier.featured .tier-price{ color:var(--paper); }
+  .tier.featured .tier-price span{ color:#CFE0D8; }
+  .tier.featured .tier-desc{ color:#CFE0D8; }
+  .tier.featured li{ color:var(--paper); border-bottom:1px solid rgba(242,239,227,0.22); }
+  .tier .tier-name{ font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--brass); margin-bottom:14px; }
+  .tier .tier-price{ font-family:'IBM Plex Mono', monospace; font-size:34px; color:var(--green-dark); margin-bottom:6px; }
+  .tier .tier-price span{ font-size:14px; color:var(--ink-soft); }
+  .tier .tier-desc{ font-size:14px; color:var(--ink-soft); margin-bottom:22px; }
+  .tier ul{ list-style:none; padding:0; margin:0 0 26px; flex-grow:1; }
+  .tier li{ font-size:13.5px; padding:7px 0; border-bottom:1px solid var(--line); color:var(--ink); }
+  .tier li:last-child{ border-bottom:none; }
+  .tier .stamp-btn{ text-align:center; align-self:flex-start; }
+
+  /* cta band */
+  .cta-band{
+    background:var(--green-dark); color:var(--paper);
+    padding:72px 32px; text-align:center;
+  }
+  .cta-band h2{ color:var(--paper); font-size:30px; margin-bottom:16px; }
+  .cta-band p{ color:#CFC6A6; font-size:15.5px; margin-bottom:30px; }
+  .cta-band .stamp-btn{ font-size:14px; padding:14px 30px; }
+
+  /* footer */
+  footer{ padding:40px 32px 50px; }
+  .foot-grid{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; }
+  .foot-links{ display:flex; gap:26px; }
+  .foot-links a{ color:var(--ink-soft); text-decoration:none; font-size:13.5px; }
+  .foot-social{ display:flex; gap:16px; }
+  .foot-social a{ color:var(--ink-soft); text-decoration:none; font-family:'IBM Plex Mono', monospace; font-size:12px; }
+  .copyright{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--ink-soft); margin-top:24px; }
+
+  /* pricing teaser (full tiers moved to pricing.html) */
+  .pricing-teaser{ padding:80px 32px; }
+  .pricing-teaser .wrap{
+    display:flex; align-items:center; justify-content:space-between; gap:40px;
+    background:var(--paper-2); border:1px solid var(--line); padding:44px 48px;
+    flex-wrap:wrap;
+  }
+  .pricing-teaser h2{ font-size:28px; margin-bottom:10px; }
+  .pricing-teaser p{ color:var(--ink-soft); font-size:15px; max-width:48ch; margin:0; }
+  .pricing-teaser .teaser-text{ flex:1 1 360px; }
+
+  /* blog listing */
+  .blog-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; margin-top:48px; }
+  .post-card{
+    display:flex; flex-direction:column;
+    border:1px solid var(--line); background:var(--paper-2);
+    text-decoration:none; color:var(--ink);
+  }
+  .post-card .post-thumb{
+    height:120px; background:var(--green-dark);
+    display:flex; align-items:center; justify-content:center;
+    border-bottom:2px solid var(--brass);
+  }
+  .post-card .post-thumb svg{ width:52px; height:52px; }
+  .post-card .post-body{ padding:22px 22px 26px; display:flex; flex-direction:column; flex-grow:1; }
+  .post-card .post-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--brass); margin-bottom:10px;
+  }
+  .post-card h3{ font-size:20px; line-height:1.3; margin-bottom:10px; color:var(--green-dark); }
+  .post-card p{ color:var(--ink-soft); font-size:14px; line-height:1.55; margin:0 0 18px; flex-grow:1; }
+  .post-card .post-meta{
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--ink-soft);
+    display:flex; justify-content:space-between; border-top:1px solid var(--line); padding-top:14px;
+  }
+  .post-card .post-meta .read-more{ color:var(--brick); font-weight:500; }
+
+  /* article page */
+  .article-hero{ padding:64px 32px 24px; max-width:760px; margin:0 auto; }
+  .article-hero .back-link{
+    display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:12.5px;
+    color:var(--ink-soft); text-decoration:none; margin-bottom:24px;
+  }
+  .article-hero .back-link:hover{ color:var(--green); }
+  .article-hero h1{ font-size:36px; line-height:1.2; margin-bottom:16px; }
+  .article-meta{
+    display:flex; gap:18px; align-items:center;
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--ink-soft);
+    padding-bottom:28px; border-bottom:1px solid var(--line); margin-bottom:8px;
+  }
+  .article-meta .tag{ color:var(--brass); font-weight:500; }
+  .article-body{ max-width:760px; margin:0 auto; padding:32px 32px 24px; }
+  .article-body p{ font-size:16.5px; line-height:1.75; color:var(--ink); margin:0 0 22px; }
+  .article-body h2{ font-size:25px; margin:40px 0 16px; }
+  .article-body h3{ font-size:19px; margin:30px 0 12px; color:var(--green); }
+  .article-body ul{ margin:0 0 24px; padding-left:22px; }
+  .article-body li{ font-size:16px; line-height:1.7; color:var(--ink); margin-bottom:8px; }
+  .article-body strong{ color:var(--green-dark); }
+  .article-cta{
+    background:var(--paper-2); border:1px solid var(--line); border-left:3px solid var(--brass);
+    padding:26px 28px; margin:36px 0; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
+  }
+  .article-cta p{ margin:0; font-size:15px; color:var(--ink); max-width:44ch; }
+  .related-posts{ background:var(--paper-2); padding:64px 32px; }
+  .related-posts .wrap h2{ font-size:24px; margin-bottom:28px; }
+
+  @media (max-width: 860px){
+    .blog-grid{ grid-template-columns:1fr; }
+    .hero{ grid-template-columns:1fr; padding-top:44px; }
+    .hero h1{ font-size:34px; }
+    .about .grid{ grid-template-columns:1fr; }
+    .ledger-cols{ grid-template-columns:1fr; }
+    .tiers{ grid-template-columns:1fr; }
+    .trust-strip .wrap{ grid-template-columns:1fr 1fr; }
+    .trust-tile{ border-bottom:1px solid rgba(242,239,227,0.14); }
+    .dash-card{ display:none; }
+    .integrations .wrap{ flex-direction:column; align-items:flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="index.html">
+      <span class="mark">Samza</span>
+      <span class="sub">Bookkeeping</span>
+    </a>
+    <nav class="links">
+      <a href="index.html#services">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="blog.html" style="color:var(--paper);">Blog</a>
+      <a href="index.html#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="stamp-btn" href="#contact">Book a call</a>
+  </div>
+</header>
+
+<div class="ledger-rule"></div>
+
+<section class="hero" style="padding-bottom:16px;">
+  <div style="grid-column:1/-1;">
+    <span class="eyebrow">Blog</span>
+    <h1>Bookkeeping tips for small business owners.</h1>
+    <p class="lede">Plain-English guides on small business bookkeeping, working with a remote bookkeeper, and getting the most out of QuickBooks Online — written for owners, not accountants.</p>
+  </div>
+</section>
+
+<section class="pricing" id="posts">
+  <div class="wrap">
+    <div class="blog-grid">
+
+      <a class="post-card" href="blog-small-business-bookkeeping-guide.html">
+        <div class="post-thumb">
+          <svg viewBox="0 0 64 64" fill="none"><rect x="14" y="10" width="36" height="44" rx="2" stroke="#B8863E" stroke-width="2.5"/><path d="M22 22h20M22 30h20M22 38h13" stroke="#B8863E" stroke-width="2.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="post-body">
+          <span class="post-tag">Small Business Bookkeeping</span>
+          <h3>Small Business Bookkeeping 101: A Practical Guide for Owners</h3>
+          <p>What a bookkeeper actually does, why clean books matter long before tax season, and how to know when it's time to stop doing it yourself.</p>
+          <div class="post-meta"><span>7 min read</span><span class="read-more">Read article →</span></div>
+        </div>
+      </a>
+
+      <a class="post-card" href="blog-remote-bookkeeper-vs-in-house.html">
+        <div class="post-thumb">
+          <svg viewBox="0 0 64 64" fill="none"><circle cx="24" cy="24" r="9" stroke="#B8863E" stroke-width="2.5"/><path d="M11 50c2.5-9 7-14 13-14s10.5 5 13 14" stroke="#B8863E" stroke-width="2.5" stroke-linecap="round"/><rect x="40" y="16" width="16" height="12" rx="1.5" stroke="#B8863E" stroke-width="2.2"/><path d="M40 40h16M40 46h16M40 52h10" stroke="#B8863E" stroke-width="2.2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="post-body">
+          <span class="post-tag">Remote Bookkeeper</span>
+          <h3>Remote Bookkeeper vs. In-House Hire: What's Right for Your Business?</h3>
+          <p>A cost-and-workflow comparison to help small business owners decide between a remote bookkeeper and bringing bookkeeping in-house.</p>
+          <div class="post-meta"><span>6 min read</span><span class="read-more">Read article →</span></div>
+        </div>
+      </a>
+
+      <a class="post-card" href="blog-quickbooks-online-bookkeeping-guide.html">
+        <div class="post-thumb">
+          <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="20" stroke="#B8863E" stroke-width="2.5"/><path d="M23 33l6 6 13-15" stroke="#B8863E" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="post-body">
+          <span class="post-tag">QuickBooks Online</span>
+          <h3>QuickBooks Online Bookkeeping: A Small Business Owner's Guide</h3>
+          <p>How QuickBooks Online accounting actually works, common setup mistakes, and when it makes sense to bring in a certified ProAdvisor.</p>
+          <div class="post-meta"><span>8 min read</span><span class="read-more">Read article →</span></div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<div class="ledger-rule"></div>
+
+<section class="cta-band" id="contact">
+  <h2>Ready to get your time back?</h2>
+  <p>Book a free discovery call — no pressure, just a conversation about where your books stand.</p>
+  <a class="stamp-btn" href="https://calendly.com/samzabookkeeping-info/bookkeeping-discovery-call" target="_blank" rel="noopener">Book a call</a>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <div class="logo"><span class="mark">Samza</span><span class="sub">Bookkeeping</span></div>
+      <div class="copyright">© 2026 Samza Bookkeeping. Minneapolis–Saint Paul, MN.</div>
+    </div>
+    <div class="foot-links">
+      <a href="index.html#services">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="blog.html" style="color:var(--green); font-weight:600;">Blog</a>
+      <a href="index.html#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="foot-social">
+      <a href="https://x.com/samzabooks" target="_blank" rel="noopener">X</a>
+      <a href="https://www.facebook.com/profile.php?id=61574729287373" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.linkedin.com/company/samzabookkeeping/about" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
