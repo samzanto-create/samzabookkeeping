@@ -1,1 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Sam — Samza Bookkeeping</title>
+<meta name="description" content="Meet Sam, the bookkeeper behind Samza Bookkeeping. Twin Cities based, serving small businesses nationwide since 2019.">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48x48.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#1B3129">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2EFE3;
+    --paper-2:#EAE5D3;
+    --ink:#232520;
+    --ink-soft:#5B5B50;
+    --green:#2C4E43;
+    --green-dark:#1B3129;
+    --brass:#B8863E;
+    --brass-light:#EFE0C2;
+    --brick:#A8462E;
+    --line: rgba(35,37,32,0.16);
+    --radius: 2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    margin:0;
+    color:var(--green-dark);
+  }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  .wrap{ max-width:1100px; margin:0 auto; padding:0 32px; }
 
+  /* ledger tick divider */
+  .ledger-rule{
+    width:100%;
+    height:18px;
+    background-image: repeating-linear-gradient(to right, var(--line) 0, var(--line) 1px, transparent 1px, transparent 48px);
+    border-top:1px solid var(--line);
+    margin: 0;
+  }
+
+  /* header */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--green-dark);
+    border-bottom:2px solid var(--brass);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 32px;
+    max-width:1100px; margin:0 auto;
+  }
+  .logo{
+    display:flex; align-items:center;
+    text-decoration:none; color:var(--paper);
+  }
+  .logo-img{ height:34px; width:auto; display:block; }
+  .logo-img.footer-mark{ height:30px; }
+  nav.links{ display:flex; align-items:center; gap:36px; }
+  nav.links a{
+    color:#CFC6A6; text-decoration:none; font-size:14.5px; font-weight:500;
+    position:relative; padding-bottom:3px;
+  }
+  nav.links a:hover{ color:var(--paper); }
+  .stamp-btn{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; font-weight:500; letter-spacing:0.04em; text-transform:uppercase;
+    color:var(--paper);
+    background:var(--brick);
+    border:1.5px solid var(--brick);
+    padding:10px 20px;
+    border-radius:var(--radius);
+    text-decoration:none;
+    transition:background .15s ease, border-color .15s ease, transform .1s ease;
+  }
+  .stamp-btn:hover{
+    background:#8A3823;
+    border-color:#8A3823;
+    transform:translateY(-1px);
+  }
+
+  /* hero */
+  .hero{
+    position:relative;
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px;
+    align-items:center;
+    padding:72px 32px 56px;
+    max-width:1100px; margin:0 auto;
+    overflow:visible;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:-20px -32px auto -32px; height:520px;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:34px 34px;
+    -webkit-mask-image: radial-gradient(ellipse 900px 420px at 30% 20%, black 40%, transparent 78%);
+    mask-image: radial-gradient(ellipse 900px 420px at 30% 20%, black 40%, transparent 78%);
+    opacity:0.55;
+    pointer-events:none;
+    z-index:0;
+  }
+  .hero > *{ position:relative; z-index:1; }
+  .hero-visual{ position:relative; }
+  .dash-card{
+    position:absolute;
+    top:-34px; right:34px;
+    width:180px;
+    background:var(--green-dark);
+    border:1px solid var(--brass);
+    padding:14px 16px 16px;
+    transform:rotate(3deg);
+    z-index:0;
+    box-shadow:0 10px 24px rgba(27,49,41,0.22);
+  }
+  .dash-card .dash-title{
+    font-family:'IBM Plex Mono', monospace; font-size:9.5px; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--brass); margin-bottom:10px;
+  }
+  .dash-card svg{ display:block; width:100%; height:auto; }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--brass); margin-bottom:18px; display:block;
+  }
+  .hero h1{ font-size:46px; line-height:1.12; margin-bottom:20px; }
+  .hero p.lede{ font-size:18px; color:var(--ink-soft); max-width:46ch; margin-bottom:32px; }
+  .hero-ctas{ display:flex; align-items:center; gap:22px; }
+  .text-link{ color:var(--green-dark); text-decoration:underline; text-underline-offset:3px; font-weight:500; font-size:14.5px; }
+  .hero-ledger{
+    position:relative;
+    border:1px solid var(--line);
+    background:var(--paper-2);
+    padding:28px 24px;
+  }
+  .hero-ledger .row{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:11px 0; border-bottom:1px solid var(--line);
+    font-family:'IBM Plex Mono', monospace; font-size:13px;
+  }
+  .hero-ledger .row:last-child{ border-bottom:none; }
+  .hero-ledger .row .label{ color:var(--ink-soft); }
+  .hero-ledger .row .val{ color:var(--green-dark); font-weight:500; }
+  .hero-ledger .row .val.check{ color:var(--brass); }
+  .hero-ledger .total{
+    display:flex; justify-content:space-between; align-items:baseline;
+    margin-top:16px; padding-top:16px; border-top:1.5px solid var(--green);
+  }
+  .hero-ledger .total .label{ font-family:'Fraunces', serif; font-size:15px; color:var(--green-dark); }
+  .hero-ledger .total .val{ font-family:'IBM Plex Mono', monospace; font-size:22px; color:var(--brick); font-weight:500; }
+  .hero-ledger .caption{
+    position:absolute; bottom:-14px; right:6px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-soft);
+    padding:5px 10px; transform:rotate(1.5deg);
+  }
+
+  /* trust strip */
+  .trust-strip{
+    background:var(--green-dark);
+    padding:0;
+  }
+  .trust-strip .wrap{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+    padding:0;
+  }
+  .trust-tile{
+    display:flex; align-items:center; gap:12px;
+    padding:24px 22px;
+    border-right:1px solid rgba(242,239,227,0.14);
+  }
+  .trust-tile:last-child{ border-right:none; }
+  .trust-tile svg{ flex-shrink:0; width:26px; height:26px; }
+  .trust-tile .t-label{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; line-height:1.4;
+    color:#D8CFAE; letter-spacing:0.01em;
+  }
+  .trust-tile .t-label strong{ display:block; color:var(--paper); font-size:13.5px; font-weight:500; margin-bottom:2px; }
+
+  /* integrations strip */
+  .integrations{ padding:52px 32px; border-bottom:1px solid var(--line); }
+  .integrations .wrap{ display:flex; align-items:center; gap:36px; flex-wrap:wrap; justify-content:space-between; }
+  .integrations .int-label{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--ink-soft); white-space:nowrap;
+  }
+  .int-tiles{ display:flex; gap:14px; flex-wrap:wrap; }
+  .int-tile{
+    display:flex; align-items:center; gap:8px;
+    border:1px solid var(--line); padding:8px 14px;
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--ink);
+    background:var(--paper-2);
+  }
+  .int-tile .dot{ width:9px; height:9px; border-radius:50%; flex-shrink:0; }
+
+  /* about */
+  .about{ padding:88px 32px; }
+  .about .grid{
+    display:grid; grid-template-columns:0.75fr 1.25fr; gap:64px; align-items:start;
+  }
+  .stat-block{ display:flex; flex-direction:column; gap:24px; margin-top:8px; }
+  .stat{ border-top:1px solid var(--line); padding-top:14px; }
+  .stat-num{ display:block; font-family:'IBM Plex Mono', monospace; font-size:32px; color:var(--green-dark); font-weight:500; }
+  .stat-label{ display:block; font-size:13px; color:var(--ink-soft); margin-top:4px; }
+  .section-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--brass); margin-bottom:14px; display:block;
+  }
+  .about h2{ font-size:32px; margin-bottom:22px; }
+  .about p{ color:var(--ink-soft); font-size:15.5px; margin-bottom:18px; max-width:56ch; }
+
+  /* services ledger */
+  .services{ padding:88px 32px; background:var(--paper-2); }
+  .services-head{ max-width:60ch; margin-bottom:48px; }
+  .services-head h2{ font-size:32px; margin-bottom:16px; }
+  .services-head p{ color:var(--ink-soft); font-size:15.5px; }
+  .ledger-cols{ display:grid; grid-template-columns:1fr 1fr; gap:0 64px; }
+  .ledger-group{ margin-bottom:36px; }
+  .ledger-group h3{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--paper); font-weight:500;
+    background:var(--green); padding:5px 12px; margin-bottom:12px;
+  }
+  .ledger-row{
+    display:flex; align-items:flex-start; gap:12px;
+    padding:13px 0; border-bottom:1px solid var(--line);
+    font-size:14.5px;
+  }
+  .ledger-row .check{
+    font-family:'IBM Plex Mono', monospace; color:var(--brass); font-weight:500; flex-shrink:0;
+  }
+  .ledger-row .label{ color:var(--ink); }
+
+  /* pricing */
+  .pricing{ padding:88px 32px; }
+  .pricing-head{ text-align:center; max-width:56ch; margin:0 auto 48px; }
+  .pricing-head h2{ font-size:32px; margin-bottom:16px; }
+  .pricing-head p{ color:var(--ink-soft); font-size:15.5px; }
+  .tiers{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .tier{
+    border:1px solid var(--line); background:var(--paper-2);
+    padding:32px 26px; display:flex; flex-direction:column;
+  }
+  .tier.featured{ border:1.5px solid var(--green); background:var(--green); }
+  .tier.featured .tier-name{ color:var(--brass-light); }
+  .tier.featured .tier-price{ color:var(--paper); }
+  .tier.featured .tier-price span{ color:#CFE0D8; }
+  .tier.featured .tier-desc{ color:#CFE0D8; }
+  .tier.featured li{ color:var(--paper); border-bottom:1px solid rgba(242,239,227,0.22); }
+  .tier .tier-name{ font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--brass); margin-bottom:14px; }
+  .tier .tier-price{ font-family:'IBM Plex Mono', monospace; font-size:34px; color:var(--green-dark); margin-bottom:6px; }
+  .tier .tier-price span{ font-size:14px; color:var(--ink-soft); }
+  .tier .tier-desc{ font-size:14px; color:var(--ink-soft); margin-bottom:22px; }
+  .tier ul{ list-style:none; padding:0; margin:0 0 26px; flex-grow:1; }
+  .tier li{ font-size:13.5px; padding:7px 0; border-bottom:1px solid var(--line); color:var(--ink); }
+  .tier li:last-child{ border-bottom:none; }
+  .tier .stamp-btn{ text-align:center; align-self:flex-start; }
+
+  /* cta band */
+  .cta-band{
+    background:var(--green-dark); color:var(--paper);
+    padding:72px 32px; text-align:center;
+  }
+  .cta-band h2{ color:var(--paper); font-size:30px; margin-bottom:16px; }
+  .cta-band p{ color:#CFC6A6; font-size:15.5px; margin-bottom:30px; }
+  .cta-band .stamp-btn{ font-size:14px; padding:14px 30px; }
+
+  /* footer */
+  footer{ padding:40px 32px 50px; }
+  .foot-grid{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; }
+  .foot-links{ display:flex; gap:26px; }
+  .foot-links a{ color:var(--ink-soft); text-decoration:none; font-size:13.5px; }
+  .foot-social{ display:flex; gap:16px; }
+  .foot-social a{ color:var(--ink-soft); text-decoration:none; font-family:'IBM Plex Mono', monospace; font-size:12px; }
+  .copyright{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--ink-soft); margin-top:24px; }
+
+  /* pricing teaser (full tiers moved to pricing.html) */
+  .pricing-teaser{ padding:80px 32px; }
+  .pricing-teaser .wrap{
+    display:flex; align-items:center; justify-content:space-between; gap:40px;
+    background:var(--paper-2); border:1px solid var(--line); padding:44px 48px;
+    flex-wrap:wrap;
+  }
+  .pricing-teaser h2{ font-size:28px; margin-bottom:10px; }
+  .pricing-teaser p{ color:var(--ink-soft); font-size:15px; max-width:48ch; margin:0; }
+  .pricing-teaser .teaser-text{ flex:1 1 360px; }
+
+  /* blog listing */
+  .blog-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; margin-top:48px; }
+  .post-card{
+    display:flex; flex-direction:column;
+    border:1px solid var(--line); background:var(--paper-2);
+    text-decoration:none; color:var(--ink);
+  }
+  .post-card .post-thumb{
+    height:120px; background:var(--green-dark);
+    display:flex; align-items:center; justify-content:center;
+    border-bottom:2px solid var(--brass);
+  }
+  .post-card .post-thumb svg{ width:52px; height:52px; }
+  .post-card .post-body{ padding:22px 22px 26px; display:flex; flex-direction:column; flex-grow:1; }
+  .post-card .post-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--brass); margin-bottom:10px;
+  }
+  .post-card h3{ font-size:20px; line-height:1.3; margin-bottom:10px; color:var(--green-dark); }
+  .post-card p{ color:var(--ink-soft); font-size:14px; line-height:1.55; margin:0 0 18px; flex-grow:1; }
+  .post-card .post-meta{
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--ink-soft);
+    display:flex; justify-content:space-between; border-top:1px solid var(--line); padding-top:14px;
+  }
+  .post-card .post-meta .read-more{ color:var(--brick); font-weight:500; }
+
+  /* article page */
+  .article-hero{ padding:64px 32px 24px; max-width:760px; margin:0 auto; }
+  .article-hero .back-link{
+    display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:12.5px;
+    color:var(--ink-soft); text-decoration:none; margin-bottom:24px;
+  }
+  .article-hero .back-link:hover{ color:var(--green); }
+  .article-hero h1{ font-size:36px; line-height:1.2; margin-bottom:16px; }
+  .article-meta{
+    display:flex; gap:18px; align-items:center;
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--ink-soft);
+    padding-bottom:28px; border-bottom:1px solid var(--line); margin-bottom:8px;
+  }
+  .article-meta .tag{ color:var(--brass); font-weight:500; }
+  .article-body{ max-width:760px; margin:0 auto; padding:32px 32px 24px; }
+  .article-body p{ font-size:16.5px; line-height:1.75; color:var(--ink); margin:0 0 22px; }
+  .article-body h2{ font-size:25px; margin:40px 0 16px; }
+  .article-body h3{ font-size:19px; margin:30px 0 12px; color:var(--green); }
+  .article-body ul{ margin:0 0 24px; padding-left:22px; }
+  .article-body li{ font-size:16px; line-height:1.7; color:var(--ink); margin-bottom:8px; }
+  .article-body strong{ color:var(--green-dark); }
+  .article-cta{
+    background:var(--paper-2); border:1px solid var(--line); border-left:3px solid var(--brass);
+    padding:26px 28px; margin:36px 0; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
+  }
+  .article-cta p{ margin:0; font-size:15px; color:var(--ink); max-width:44ch; }
+  .related-posts{ background:var(--paper-2); padding:64px 32px; }
+  .related-posts .wrap h2{ font-size:24px; margin-bottom:28px; }
+
+  /* services bubbles */
+  .services-page{ padding:80px 32px 40px; }
+  .services-page .services-head{ max-width:64ch; margin-bottom:52px; }
+  .bubble-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .bubble-card{
+    border:1px solid var(--line); background:var(--paper-2);
+    padding:26px 24px; scroll-margin-top:100px;
+  }
+  .bubble-card .bc-head{ display:flex; align-items:center; gap:10px; margin-bottom:16px; }
+  .bubble-card .bc-dot{ width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+  .bubble-card h3{ font-size:17px; color:var(--green-dark); }
+  .bubble-tasks{ display:flex; flex-wrap:wrap; gap:8px; }
+  .task-bubble{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace; font-size:12px;
+    color:var(--ink); background:var(--paper);
+    border:1px solid var(--line); border-radius:100px;
+    padding:7px 14px;
+  }
+
+  /* tier matrix */
+  .matrix-section{ padding:20px 32px 88px; }
+  .matrix-section .services-head{ max-width:64ch; margin-bottom:36px; }
+  .matrix-table{ width:100%; border-collapse:collapse; background:var(--paper-2); border:1px solid var(--line); }
+  .matrix-table th, .matrix-table td{ padding:14px 16px; border-bottom:1px solid var(--line); text-align:center; }
+  .matrix-table th{
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--paper); background:var(--green-dark);
+  }
+  .matrix-table th:first-child, .matrix-table td:first-child{ text-align:left; }
+  .matrix-table td:first-child{ font-size:14px; color:var(--ink); font-weight:500; }
+  .matrix-table tr:last-child td{ border-bottom:none; }
+  .matrix-table .yes{ color:var(--brass); font-size:17px; font-weight:600; }
+  .matrix-table .no{ color:var(--ink-soft); opacity:0.5; }
+  .matrix-note{ font-size:13px; color:var(--ink-soft); margin-top:16px; }
+  .matrix-note a{ color:var(--green); }
+
+  /* contact form */
+  .contact-section{ padding:20px 32px 90px; }
+  .contact-layout{ display:grid; grid-template-columns:1.5fr 1fr; gap:48px; align-items:start; }
+  .contact-form{ border:1px solid var(--line); background:var(--paper-2); padding:36px 40px; }
+  .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .form-group{ margin-bottom:22px; }
+  .form-group label{
+    display:block; font-family:'IBM Plex Mono', monospace; font-size:12px;
+    letter-spacing:0.05em; text-transform:uppercase; color:var(--green-dark);
+    margin-bottom:8px; font-weight:500;
+  }
+  .form-group label .req{ color:var(--brick); }
+  .form-group input, .form-group select, .form-group textarea{
+    width:100%; font-family:'IBM Plex Sans', sans-serif; font-size:14.5px; color:var(--ink);
+    background:var(--paper); border:1px solid var(--line); padding:11px 13px;
+    border-radius:var(--radius); outline:none;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus{
+    border-color:var(--brass); box-shadow:0 0 0 1px var(--brass);
+  }
+  .form-group textarea{ resize:vertical; min-height:90px; font-family:'IBM Plex Sans', sans-serif; }
+  .form-divider{
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--brass); margin:30px 0 18px; padding-top:22px;
+    border-top:1px dashed var(--line);
+  }
+  .contact-form .submit-btn{ border:none; cursor:pointer; font-size:13.5px; }
+  .contact-sidebar{
+    border:1px solid var(--line); background:var(--green-dark); padding:32px 28px;
+    color:var(--paper);
+  }
+  .contact-sidebar h3{ color:var(--paper); font-size:19px; margin-bottom:12px; }
+  .contact-sidebar p{ color:#CFC6A6; font-size:14px; line-height:1.6; margin-bottom:22px; }
+  .contact-sidebar .stamp-btn{ width:100%; text-align:center; box-sizing:border-box; }
+  .contact-sidebar .sidebar-note{
+    margin-top:24px; padding-top:20px; border-top:1px solid rgba(242,239,227,0.18);
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color:#B7AE93; line-height:1.6;
+  }
+
+  /* about page */
+  .story-section{ padding:20px 32px 80px; }
+  .story-layout{ display:grid; grid-template-columns:0.7fr 1.3fr; gap:56px; align-items:start; }
+  .pull-stat-col{ display:flex; flex-direction:column; gap:24px; position:sticky; top:100px; }
+  .pull-stat{ border-top:1px solid var(--line); padding-top:14px; }
+  .pull-stat .num{ display:block; font-family:'IBM Plex Mono', monospace; font-size:30px; color:var(--green-dark); font-weight:500; }
+  .pull-stat .label{ display:block; font-size:12.5px; color:var(--ink-soft); margin-top:4px; }
+  .story-text h2{ font-size:30px; margin-bottom:20px; }
+  .story-text p{ font-size:16px; line-height:1.75; color:var(--ink); margin-bottom:20px; }
+  .pull-quote{
+    border-left:3px solid var(--brass); padding:6px 0 6px 22px; margin:32px 0;
+    font-family:'Fraunces', serif; font-size:20px; font-style:italic; color:var(--green-dark); line-height:1.5;
+  }
+
+  .values-section{ padding:70px 32px; background:var(--paper-2); }
+  .values-head{ max-width:60ch; margin-bottom:44px; }
+  .values-head h2{ font-size:30px; margin-bottom:14px; }
+  .values-head p{ color:var(--ink-soft); font-size:15.5px; }
+  .values-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+  .value-card{ background:var(--paper); border:1px solid var(--line); padding:24px 20px; }
+  .value-card .v-num{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--brass); margin-bottom:12px; }
+  .value-card h3{ font-size:16.5px; color:var(--green-dark); margin-bottom:10px; }
+  .value-card p{ font-size:13.5px; color:var(--ink-soft); line-height:1.6; margin:0; }
+
+  .timeline-section{ padding:80px 32px; }
+  .timeline-head{ max-width:60ch; margin-bottom:48px; }
+  .timeline-head h2{ font-size:30px; margin-bottom:14px; }
+  .timeline{ position:relative; padding-left:28px; border-left:2px solid var(--line); }
+  .t-item{ position:relative; padding-bottom:36px; }
+  .t-item:last-child{ padding-bottom:0; }
+  .t-item::before{
+    content:""; position:absolute; left:-33.5px; top:3px;
+    width:10px; height:10px; border-radius:50%; background:var(--brass); border:2px solid var(--paper);
+  }
+  .t-item .t-year{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--brass); font-weight:500; margin-bottom:6px; }
+  .t-item h3{ font-size:17px; color:var(--green-dark); margin-bottom:6px; }
+  .t-item p{ font-size:14px; color:var(--ink-soft); line-height:1.6; margin:0; max-width:60ch; }
+
+  .personal-section{ padding:20px 32px 80px; }
+  .personal-card{
+    background:var(--green-dark); color:var(--paper);
+    padding:44px 48px; display:grid; grid-template-columns:0.9fr 1.5fr; gap:40px; align-items:center;
+  }
+  .personal-card h2{ color:var(--paper); font-size:24px; margin-bottom:8px; }
+  .personal-card .section-tag{ color:var(--brass); }
+  .personal-list{ display:flex; flex-direction:column; gap:14px; }
+  .personal-list .p-row{ display:flex; gap:14px; font-size:14.5px; line-height:1.6; color:#D8CFAE; }
+  .personal-list .p-row strong{ color:var(--paper); font-weight:500; min-width:130px; flex-shrink:0; }
+
+  @media (max-width: 860px){
+    .story-layout{ grid-template-columns:1fr; }
+    .pull-stat-col{ position:static; flex-direction:row; flex-wrap:wrap; gap:28px; }
+    .values-grid{ grid-template-columns:1fr 1fr; }
+    .personal-card{ grid-template-columns:1fr; padding:32px 26px; }
+
+    .contact-layout{ grid-template-columns:1fr; }
+    .form-row{ grid-template-columns:1fr; }
+    .contact-form{ padding:28px 22px; }
+    .bubble-grid{ grid-template-columns:1fr; }
+    .matrix-table{ font-size:13px; }
+    .matrix-table th, .matrix-table td{ padding:10px 8px; }
+
+    .blog-grid{ grid-template-columns:1fr; }
+    .hero{ grid-template-columns:1fr; padding-top:44px; }
+    .hero h1{ font-size:34px; }
+    .about .grid{ grid-template-columns:1fr; }
+    .ledger-cols{ grid-template-columns:1fr; }
+    .tiers{ grid-template-columns:1fr; }
+    .trust-strip .wrap{ grid-template-columns:1fr 1fr; }
+    .trust-tile{ border-bottom:1px solid rgba(242,239,227,0.14); }
+    .dash-card{ display:none; }
+    .integrations .wrap{ flex-direction:column; align-items:flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="index.html"><img class="logo-img" src="assets/logo-header.png" alt="Samza Bookkeeping"></a>
+    <nav class="links">
+      <a href="services.html">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html" style="color:var(--paper);">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="stamp-btn" href="#contact">Book a call</a>
+  </div>
+</header>
+
+<div class="ledger-rule"></div>
+
+<section class="hero" style="padding-bottom:16px;">
+  <div style="grid-column:1/-1;">
+    <span class="eyebrow">About</span>
+    <h1>The person behind the numbers.</h1>
+    <p class="lede">Samza Bookkeeping is Sam — no agency, no revolving door of staff, just one bookkeeper who genuinely likes untangling other people's books.</p>
+  </div>
+</section>
+
+<section class="story-section">
+  <div class="wrap story-layout">
+    <div class="pull-stat-col">
+      <div class="pull-stat"><span class="num">2019</span><span class="label">founded, Twin Cities based</span></div>
+      <div class="pull-stat"><span class="num">100%</span><span class="label">of clients work directly with Sam</span></div>
+      <div class="pull-stat"><span class="num">0</span><span class="label">account managers or hand-offs</span></div>
+    </div>
+    <div class="story-text">
+      <span class="section-tag">My Story</span>
+      <h2>How a spreadsheet habit turned into a bookkeeping practice.</h2>
+      <p>Every bookkeeper has an origin story, and mine starts the way a lot of them do: with a small business that needed its books cleaned up, and nobody else around to do it. What began as helping out turned into a genuine fascination with the way clean financial records change how a business owner sleeps at night. There is a particular kind of relief that comes from finally knowing, with certainty, what your numbers actually say — and I found I liked being the person who delivers that relief.</p>
+      <p>Samza Bookkeeping launched in 2019 out of the belief that small business owners deserve a bookkeeper who treats their books like they matter, not like a line item to be processed as quickly as possible. Since then, the practice has grown one referral at a time, working with e-commerce shops, service businesses, trucking companies, retail stores, and everything in between — proof that good bookkeeping principles hold up no matter what the business actually sells.</p>
+      <div class="pull-quote">"Good books don't just tell you where you've been. They tell you what you can afford to do next."</div>
+      <p>What hasn't changed since day one is the structure of the practice itself: no account managers, no bouncing between staff, no outsourcing your books to whoever happens to be free that week. When you work with Samza Bookkeeping, you work with Sam — every reconciliation, every report, every phone call.</p>
+      <p>Outside of the day-to-day client work, I stay current through ongoing QuickBooks Online training and certification, because software changes fast and half-updated knowledge is how mistakes creep into a client's books. Staying sharp on the tools is part of the job, not an afterthought.</p>
+    </div>
+  </div>
+</section>
+
+<div class="ledger-rule"></div>
+
+<section class="values-section">
+  <div class="wrap">
+    <div class="values-head">
+      <span class="section-tag">How I Work</span>
+      <h2>A few principles that guide every engagement.</h2>
+      <p>These aren't marketing language — they're the actual standards each client relationship gets held to.</p>
+    </div>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="v-num">01</div>
+        <h3>Direct communication</h3>
+        <p>No account managers or ticket queues. Questions get answered by the person who actually did the work.</p>
+      </div>
+      <div class="value-card">
+        <div class="v-num">02</div>
+        <h3>Meticulous accuracy</h3>
+        <p>Reconciliation isn't optional or occasional. Every account gets checked, every month, without exception.</p>
+      </div>
+      <div class="value-card">
+        <div class="v-num">03</div>
+        <h3>Real partnership</h3>
+        <p>Your business context matters. Numbers get interpreted with an understanding of how you actually operate.</p>
+      </div>
+      <div class="value-card">
+        <div class="v-num">04</div>
+        <h3>Plain-English reporting</h3>
+        <p>Financial statements should inform decisions, not require a translator. Reports are built to be read, not decoded.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="timeline-section">
+  <div class="wrap">
+    <div class="timeline-head">
+      <span class="section-tag">Along the Way</span>
+      <h2>A few milestones</h2>
+    </div>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-year">2019</div>
+        <h3>Samza Bookkeeping founded</h3>
+        <p>Started in the Twin Cities with a handful of small business clients and a commitment to doing bookkeeping properly.</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">2020–2021</div>
+        <h3>Expanded into full-service bookkeeping</h3>
+        <p>Grew beyond basic transaction categorization into full financial reporting, catch-up cleanup, and tax-season support.</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">2022</div>
+        <h3>QuickBooks Online ProAdvisor certified</h3>
+        <p>Completed certification through Intuit's official training program to bring deeper platform expertise to every client engagement.</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">2023–2024</div>
+        <h3>Grew into a fully remote practice</h3>
+        <p>Began serving clients nationwide, proving that great bookkeeping doesn't require being in the same city, let alone the same room.</p>
+      </div>
+      <div class="t-item">
+        <div class="t-year">Today</div>
+        <h3>Still one bookkeeper, still direct access</h3>
+        <p>The practice has grown, but the structure hasn't: every client still works with Sam, not a rotating team.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="personal-section">
+  <div class="wrap personal-card">
+    <div>
+      <span class="section-tag">Off the Clock</span>
+      <h2>A little more about Sam</h2>
+    </div>
+    <div class="personal-list">
+      <div class="p-row"><strong>Based in</strong> Minneapolis–Saint Paul, Minnesota</div>
+      <div class="p-row"><strong>Coffee order</strong> Black, always, no exceptions</div>
+      <div class="p-row"><strong>Favorite part of the job</strong> The moment a client's P&L finally makes sense to them</div>
+      <div class="p-row"><strong>Least favorite part</strong> Unreconciled Venmo transactions</div>
+      <div class="p-row"><strong>When not working</strong> Probably outside, or reorganizing something that didn't strictly need reorganizing</div>
+    </div>
+  </div>
+</section>
+
+
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <div class="logo"><img class="logo-img footer-mark" src="assets/logo-footer.png" alt="Samza Bookkeeping"></div>
+      <div class="copyright">© 2026 Samza Bookkeeping. Minneapolis–Saint Paul, MN.</div>
+    </div>
+    <div class="foot-links">
+      <a href="services.html">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html" style="color:var(--green); font-weight:600;">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="foot-social">
+      <a href="https://x.com/samzabooks" target="_blank" rel="noopener">X</a>
+      <a href="https://www.facebook.com/profile.php?id=61574729287373" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.linkedin.com/company/samzabookkeeping/about" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
