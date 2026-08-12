@@ -8,6 +8,11 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'AW-18378343261');
+  function trackBookACall(){
+    if (typeof gtag === 'function') {
+      gtag('event', 'conversion', {'send_to': 'AW-18378343261/xQR_CK6NtOAcEN2GvbtE'});
+    }
+  }
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -394,7 +399,7 @@
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
     </nav>
-    <a class="stamp-btn" href="https://calendly.com/samzabookkeeping-info/bookkeeping-discovery-call" target="_blank" rel="noopener">Book a call</a>
+    <a class="stamp-btn" href="https://calendly.com/samzabookkeeping-info/bookkeeping-discovery-call" target="_blank" rel="noopener" onclick="trackBookACall()">Book a call</a>
   </div>
 </header>
 
@@ -457,7 +462,7 @@
 <section class="cta-band" id="contact">
   <h2>Ready to get your time back?</h2>
   <p>Book a free discovery call — no pressure, just a conversation about where your books stand.</p>
-  <a class="stamp-btn" href="https://calendly.com/samzabookkeeping-info/bookkeeping-discovery-call" target="_blank" rel="noopener">Book a call</a>
+  <a class="stamp-btn" href="https://calendly.com/samzabookkeeping-info/bookkeeping-discovery-call" target="_blank" rel="noopener" onclick="trackBookACall()">Book a call</a>
 </section>
 
 <footer>
